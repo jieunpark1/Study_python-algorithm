@@ -106,16 +106,28 @@ print((A+B)%C, ((A%C)+(B%C))%C, (A*B)%C, ((A%C)*(B%C))%C)
 """
 
 """
+#틀림
 A = int(input())
 B = input()
 c = A*int(B[-1])
-d = A*(int(B[-2:])-int(B[-1]))
-e = A*(int(B[:])-int(B[-2:]))
+d = A*(int(B[-2:])-int(B[-1])) 
+e = A*(int(B[:])-int(B[-2:]))  
 print(c)
 print(d/10)
-print(e/100)
-print(c+d+e)
+print(e/100)print(c+d+e)
+
+#올바른 풀이
+# 문자열의 인덱스를 이용해서 두번째 입력 받은 문자를 하나씩 숫자로 반환하고 A와 곱한다.
+AxB2 = A * int(B[2])
+AxB1 = A * int(B[1])
+AxB0 = A * int(B[0])
+AxB = A * int(B)
+
+print(AxB2, AxB1, AxB0, AxB, sep='\n')
+# sep='\n'로 줄바꿈
 """
+
+
 """
 다른풀이
 a,b = map(int, open(0))
@@ -131,15 +143,8 @@ print(b%10*a, b%100//10*a, b//100*a, b*a)
 141600 -> 472*3
 
 
-다른풀이
-# 문자열의 인덱스를 이용해서 두번째 입력 받은 문자를 하나씩 숫자로 반환하고 A와 곱한다.
-AxB2 = A * int(B[2])
-AxB1 = A * int(B[1])
-AxB0 = A * int(B[0])
-AxB = A * int(B)
 
-print(AxB2, AxB1, AxB0, AxB, sep='\n')
-# sep='\n'로 줄바꿈
+
 """
 
 
