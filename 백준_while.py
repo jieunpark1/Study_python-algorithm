@@ -62,13 +62,13 @@ except:
 #3. 더하기 사이클
 """
 #1) 내가 짠 코드
-코드가 너무 길고 , str대신에 int타입으로 불러와서 적절한 때에 str로 바꾸어주는 것이 편리.
 i = 1
 x = str(input())
 old_x = x[:]
 while True:
     if len(x) == 1:
-        x = x*2  #이 부분에서 왜 *2를 하는지 모르겠다.
+        x = x*2
+        print(x)
         if x == old_x:
             break
         elif "0"+old_x == x:
@@ -85,24 +85,25 @@ while True:
         else:
             i += 1
 print(i)
-#흐름 ex) 1 -> 12 -> 23 -> 35 ---
-
-#미소언니가 짠 코드: int로 불러오고, 10의 자리를 //10으로(몫 정수), 1의 자리를 %10(나머지)
-#표시함으로써 숫자로 자릿수를 계산할 수 있다. 보기에도 편하고 간단한 
+"""
+"""
+#미소언니
 n = int(input())
 new=n
 count = 0
 while True:
-    n1 = new//10
-    n2 = new%10
+    n1 = new//10 #10의자리 
+    n2 = new%10 #1의 자리
     n3 = (n1+n2)%10
-    new=10*n2+n3 
+    new=10*n2+n3
     count+=1
     if n==new:
         break
 print(count)
+"""
 
-
+#흐름 ex) 1 -> 12 -> 23 -> 35 ---
+"""
 #2) 다른사람이 짠 코드
 N=int(input())
 a=0

@@ -42,7 +42,7 @@ for i in range(0,10):
 """
 두 자연수가 있을 때 A%B는 A를 B로 나눈 나머지이다. 
 수 10개를 입력받은 후 이를 42로 나눈 나머지를 구한다.
-서로 다른 값이 몇 개 있는지 출력.
+서로 다른 값이 몇 개 있는지 출력. -> 튜플은 여러번 출현하는 문자의 중복을 제거해줌 {}
 """
 
 """
@@ -66,6 +66,8 @@ print(sum(n)/N)
 
 #6.OX퀴즈
 """
+"X"를 기준으로 하여 split하고,
+ x를 기준으로 나뉜 o들을 등차수열의 합으로 계산
 for n in range(int(input())):
     a = input()
     a_list = a.replace("X", " ")
@@ -79,6 +81,7 @@ for n in range(int(input())):
 """
 """
 다른 정답
+받아온 o,x의 시퀀스에서 o이면 count하고, o가 아니면 count하지 않음
     result = 0
     cnt = 0
     for i in r_line:
@@ -96,12 +99,17 @@ for n in range(int(input())):
 for _ in range(int(input())):
     a = [int(x) for x in input().split()]
 
-    sum_stu = 0
-    for x in a[1:]:
-        sum_stu += x
-
-    avg = sum_stu / (len(a)-1)
+    #평균구하기
     
+    #sum_stu = 0
+    #for x in a[1:]:
+    #    sum_stu += x
+    #avg = sum_stu / (len(a)-1)
+    
+    sum_stu = sum(a) - a[0]
+    avg = sum_stu/a[0]
+    
+    #평균보다 높은 학생들의 비율 구하기
     cnt_stu = 0
     for stu in a[1:]:
         if stu > avg:
@@ -109,5 +117,5 @@ for _ in range(int(input())):
 
     res = "%0.3f" % (cnt_stu/a[0]*100)
     print(str(res)+"%")
-"""        
+"""    
     

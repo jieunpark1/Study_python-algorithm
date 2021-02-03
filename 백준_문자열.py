@@ -25,6 +25,7 @@ y = map(int, input())
 l = str(y).split('')
 s = sum(l)
 '''
+
 """
 성공: input을 두 줄에 걸쳐서 받은 다음, for문을 사용하여
 첫번째 input a가 input으로 받은 두 번째 숫자의 자리수를 지정해주고,
@@ -39,6 +40,10 @@ for i in range(a):
     c = int(l[i])
     s += c
 print(s)
+
+다른풀이: input을 map함수 적용하면 문자열 한 자리씩 잘려서 리스트형태로 나옴.
+input()
+print(sum(map(int, input())))
 """
 
 #3. 알파벳 찾기
@@ -78,6 +83,29 @@ for alpha in string.ascii_lowercase:
     res += result+" "
 print(res)
 """    
+
+"""더 간단한 방법
+#find는 찾는 문자가 문자열에 없으면 -1반환
+#알파벳만 for문을 돌면 되고, 그 알파벳을 input에서 어디에 위치하는지 찾아라.(find)
+import string
+
+a = input()
+
+for alpha in string.ascii_lowercase:
+    print(a.find(alpha)) 
+"""
+
+"""다른 방법: ascii코드를 이용
+word = input()
+alphabet = list(range(97,123))  # 아스키코드 숫자 범위
+
+for x in alphabet :
+    print(word.find(chr(x))) 
+    
+    
+    
+    
+"""
         
 #4. 문자열 반복
 """
@@ -100,29 +128,47 @@ for i in range(a):
         res += b[j] * int(a)
     res += "\n"
 print(res)
+
+
+t=int(input())
+for i in range(t):
+ a,b=input().split()
+ for j in b:
+  print(int(a)*j, end='')
+ print()
+
+
 """
+
+
 
 #5. 단어공부
 """
-input으로 문자열을 받아서 lower를 적용한다.
+input으로 문자열을 받아서 upper를 적용한다.
 (대소문자 가리지 않고 입력값 받기 때문에)
 
 word에 set을 적용하여 단어에 포함되어 있는 unique한
 character를 조사하여, 그것을 for문을 돌려서 몇개가 있는지
-조사한다. 
+조사한다. 그리고 이것을 딕셔너리 형태로 저장
 
 if를 사용하여 가장 많이 사용된 알파벳이 여러개 존재하는경우는
-(list(set))했을 떄의 리스트 길이가 문자열 길이보다 작을 때)
+(
+딕셔너리의 value를 list(set))했을 때의 리스트 길이가
+value 길이보다 작을 때=> 개수가 똑같은 것이 있다
+==> but, 이 경우 max개수가 아닐 때 중복발생해도 ?나옴
+ex) aabbccc -> ?(원래는 3출력해야 함))<실패>)
 ?를 출력하고, 
 else인 경우에는 가장 많이 사용된 알파벳을 출력한다.
 
-아래 코드 정답인 것같은데 인정이 안됨
+--> 1. if max가 여러개이면 ->? / 아니면 max를 출력하라
+--> 2. if max의 count가 1개이면 -> max 개수출력 / 아니면 ?
 
+<실패>
 import operator
 
 word = input().upper()
 uni_word = list(set(word))
-num = {}
+num = {}    #max인 문자열을 찾아야 하므로 딕셔너리를 사용 
 for char in uni_word:
      n = word.count(char)
      num[char] = n
@@ -134,10 +180,13 @@ if len(list(set(num.values()))) < len(num.values()):
 else:
     res = tuple(sorted(num.items(), key=operator.itemgetter(1), reverse=True))
     print(res[0][0])
+    
+    
 """
 """
 다른풀이   
 
+<max의 count를 세기>#uni_word와 num의 정보는 같은 인덱스에 위치->굳이 딕셔너리를 안써도된다
 word = input().upper()
 uni_word = list(set(word))  # 입력받은 문자열에서 중복값을 제거
 num = []
@@ -150,6 +199,27 @@ if num.count(max(num)) > 1 :  # count 숫자 최대값이 중복되면
 else :
     max_index = num.index(max(num))  # count 숫자 최대값 인덱스(위치)
     print(uni_word[max_index]) 
+
+
+<max인 num의 count를 해서 1이면 알파벳 출력>
+word = input().upper()
+uni_word = list(set(word))  # 입력받은 문자열에서 중복값을 제거
+print(uni_word)
+num = []
+for char in uni_word:
+    n = word.count(char)
+    num.append(n)  
+print(num)
+
+#max(num) -> 4
+if num.count(max(num)) == 1 :  # count 숫자 최대값이 중복되면
+    max_index = num.index(max(num)) 
+    print(num.index(max(num))) #uni_word와 num의 정보는 같은 인덱스에 위치
+    print(uni_word[max_index])
+
+else :
+    print("?")
+
 """
 
 #6. 단어의 개수
@@ -244,8 +314,8 @@ for string in cro_com:
         
 print(cnt+len(a))
 """
-
-""" 모르겠다 
+"""
+c=jc-jdz=jd-jljjnjjs=jz=joooooc=z=c-z=dz=z=d-z=ljz=njz=s=z=z
 cro_com = ["c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="]
 a = input()
 b = a[:]
@@ -256,8 +326,8 @@ for n in range(len(a)):
         res.append(a[n:n+2])
     elif a[n:n+3] in cro_com:
         res.append(a[n:n+3])
-        a = a.replace(a[n:n+3], " ")
-        print(a)
+        a = a.replace(a[n:n+3], " ") #dz=돌고 z=돌기 때문에 순서를 바꿔도 둘다 검색됨. 
+        print(a) #근데 replace를 하면 해당되는 것이 여러개 있으면 모두 삭제되기 때문에 오답.
 
 
 for char in res:
@@ -265,29 +335,80 @@ for char in res:
 print(b)
 print(len(res), res)
 print(len(res) + len(b))
+
 """
+
 
 #10. 그룹단어 체커 
 """
 그룹단어: 각 문자가 연속해서 나타나는 경우
 그룹단어인 것: ccazzzbb -> c a z b / kin -> k i n
 그룹단어가 아닌 것: zzbbbccb (b가 떨어져 나타나기 때문에)
--> 그룹단어를 판단하는 기준 set해서 앞에 나온 알파벳이 뒤에 나오지 않으면 된다.
---> 중복되지 않으면 된다.
+-> 기준 
+앞에 나왔던 문자가 뒤에 다시 나오면 그룹단어가 아니다
+uni_Word가 한바퀴 돌고나서 다시 사용되면 그룹단어가 아니다
 """
-"""
-a = int(input())
+"""중복문자 하나로 줄이기"""
 
-for i in range(a):
+cnt = 0
+for i in range(int(input())):
     w = input()
-     = list(set(w))
-    cnt = 0
-    if list(set(a))<list(a): #그룹단어
-        pass
-    else:
+    w_uni = list(set(w))
+
+    j = 0
+    for i in w:
+        for w_u in w_uni:
+            if i == w_u:
+                print(i)
+    j += 1
+    print(j)
+        
+    if j==1:
         cnt += 1
+    else:
+        pass
+        
+        
+                
+
 print(cnt)
-  
+            
+
+        
+cnt = 0
+for i in range(int(input())):
+    w = input()
+    w_uni = list(set(w))
+    print("#",sorted(w_uni))
+    
+    j = 0
+    used = ""
+    for i in w:
+        print("i:",i)
+        for w_u in w_uni:
+            if i==w_u:
+                if i in used:
+                    print("##")
+                    break
+                else:
+                    used += i
+
+
+
+
+        
+    if j==1:
+        cnt += 1
+    else:
+        pass
+    
+print(cnt)
+
+        
+        
+    
+
+"""  
 cnt = 0
 for i in range(a):
     w = input() 
