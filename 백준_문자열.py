@@ -186,6 +186,29 @@ else:
 """
 다른풀이   
 
+
+#미소언니
+w = list(input().upper())
+
+w_set = list(set(w))
+new = []
+
+for wd in w_set:
+    count = w.count(wd)
+    new.append(count) 1244
+sorting = sorted(new,reverse=True) 
+if len(sorting) > 1:
+    if sorting[0] == sorting[1]:
+        print('?')
+    else:
+        i = max(new)
+        print(w_set[new.index(i)])
+else:
+    i = max(new)
+    print(w_set[new.index(i)])    
+    
+
+
 <max의 count를 세기>#uni_word와 num의 정보는 같은 인덱스에 위치->굳이 딕셔너리를 안써도된다
 word = input().upper()
 uni_word = list(set(word))  # 입력받은 문자열에서 중복값을 제거
@@ -290,6 +313,30 @@ for j in range(len(a)):
         if a[j] in i:
             ret += dial.index(i)+3
 print(ret)
+
+#윤우
+a = input()
+count = 0
+
+for i in range(len(a)):
+  if 'A' <= a[i] <= 'C':
+    count += 1
+  elif 'D' <= a[i] <= 'F':
+    count += 3
+  elif 'G' <= a[i] <= 'I':
+    count += 4
+  elif 'J' <= a[i] <= 'L':
+    count += 5
+  elif 'M' <= a[i] <= 'O':
+    count += 6
+  elif 'P' <= a[i] <= 'S':
+    count += 7
+  elif 'T' <= a[i] <= 'V':
+    count += 8
+  elif 'W' <= a[i] <= 'Z':
+    count += 9
+
+print(count)
 
 """
 
