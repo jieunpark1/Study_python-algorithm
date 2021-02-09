@@ -206,6 +206,17 @@ def fibonacci(num):
  ----잘 들어보게.~~물었어.
  (8칸)
  
+ http://pythontutor.com/visualize.html#mode=display
+ d = [0] * 6	
+ def fibo(x):
+    if x ==1 or x==2:
+	        return 1
+	    if d[x] != 0:
+	        return d[x]
+	    d[x] = fibo(x-1) + fibo(x-2)
+	    return d[x]
+	print(fibo(5))
+ 
 """
 print("어느 한 컴퓨터공학과 학생이 유명한 교수님을 찾아가 물었다.")
 def ask(n):
