@@ -337,7 +337,20 @@ print(len(res), res)
 print(len(res) + len(b))
 
 """
+"""답
+1. 모두 "1"로 바꾼다 -> 크로아티아 문자열 시퀀스를 1개의 문자열로 치환시킨다. (2개 이상의 시퀀스 문자열이 1개로 바뀐다)
+c = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
+a = input()
+for i in c:
+  a = a.replace(i, "1")
+print(len(list(a)))
 
+
+2. 정규표현식을 사용, 원리는 1번과 동일하다.
+import re
+print(len(re.sub('dz=|[ln]j|\w\W','Z',input())))
+
+"""
 
 #10. 그룹단어 체커 
 """
@@ -350,75 +363,6 @@ uni_Word가 한바퀴 돌고나서 다시 사용되면 그룹단어가 아니다
 """
 """중복문자 하나로 줄이기"""
 
-cnt = 0
-for i in range(int(input())):
-    w = input()
-    w_uni = list(set(w))
-
-    j = 0
-    for i in w:
-        for w_u in w_uni:
-            if i == w_u:
-                print(i)
-    j += 1
-    print(j)
-        
-    if j==1:
-        cnt += 1
-    else:
-        pass
-        
-        
-                
-
-print(cnt)
-            
-
-        
-cnt = 0
-for i in range(int(input())):
-    w = input()
-    w_uni = list(set(w))
-    print("#",sorted(w_uni))
-    
-    j = 0
-    used = ""
-    for i in w:
-        print("i:",i)
-        for w_u in w_uni:
-            if i==w_u:
-                if i in used:
-                    print("##")
-                    break
-                else:
-                    used += i
 
 
 
-
-        
-    if j==1:
-        cnt += 1
-    else:
-        pass
-    
-print(cnt)
-
-        
-        
-    
-
-"""  
-cnt = 0
-for i in range(a):
-    w = input() 
-    res = ""
-    for i in range(len(w)):
-        if w[i] == w[i+1]:
-            res += w[i]
-            i += 1
-
-        else:
-            break
-print(res)
-"""
