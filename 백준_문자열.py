@@ -408,8 +408,46 @@ print(len(re.sub('dz=|[ln]j|\w\W','Z',input())))
 앞에 나왔던 문자가 뒤에 다시 나오면 그룹단어가 아니다
 uni_Word가 한바퀴 돌고나서 다시 사용되면 그룹단어가 아니다
 """
-"""중복문자 하나로 줄이기"""
 
 
+"""중복문자 하나로 줄이기
+새로운 문자열(used)를 만든다.
+
+input문자열을 한자리씩 조사하면서 used의 맨 끝자리와
+똑같으면 used에 추가하지 않고, used의 맨 끝자리와 다를때만
+used에 추가한다.(연속한 글자를 하나의 문자로 만들어주기 위해서)
+그리고 이렇게 모아진 used를 input의 list(set())과 비교하여
+같다면 그룹문자이고, 그렇지 않다면 그룹문자가 아니다
+            
+
+  
+cnt = 0
+used = "#" #index error를 발생시키지 않기 위해서
+for i in range(int(input())):
+    w = input()
+    w_uni = list(set(w))
+    
+    i = 0
+    if len(w) == 1:
+        cnt += 1
+    else:
+        for i in range(len(w)):
+            if used[-1] == w[i]: #여러 시퀀스의 문자열이면 used에 1개만 추가하도록 함
+                pass
+            else:
+                used += w[i]
+        print(used)
+        
+    print("used: ", sorted(used[1:]))
+    print("uni: ", sorted(w_uni))
+    if sorted(used[1:]) == sorted(w_uni):
+        cnt += 1
+    used = "#" #used를 초기화
+print(cnt)
 
 
+예시 abab--> used: [a, b, a, b] / uni: [a, b] --> 그룹문자가 아니다
+    happy --> used: [h a p y]  / uni [h a p y] --> 그룹문자다
+    a -> 1자리 단어는 그룹문자이다.
+
+"""
