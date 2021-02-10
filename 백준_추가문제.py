@@ -14,6 +14,48 @@ for i in range(len(user)):
     if user[i] in arr:
         cnt += 1
 print(cnt)
+
+#민화
+vowel=input()
+def vowel_count(vowel):
+    num_a=vowel.count("a")  
+    num_e=vowel.count("e")
+    num_i=vowel.count("i")  
+    num_o=vowel.count("o") 
+    num_u=vowel.count("u")
+    print(num_a+num_e+num_i+num_o+num_u)
+vowel_count(vowel)
+
+#간단히 한 것
+vowel = input()
+def vowel_count(v):
+    cnt = 0
+    vols = ["a", "e", "i", "o", "u"]
+    for v in vols:
+        cnt += vowel.count(v)
+    print(cnt)
+vowel_count(vowel)
+    
+    
+
+#미소
+w = input()
+vowels=["a","e","i","o","u"]
+count=0
+for char in w:
+    if char in vowels:
+        count+=1
+print(count)
+
+
+#윤우
+a = str(input())
+b = ['a', 'e', 'i', 'o', 'u']
+
+for i in b:
+  a = a.replace(i, "1")
+print(a.count("1"))
+
 """     
 
 #2. 세로읽기(10798번) 
@@ -36,13 +78,42 @@ for _ in range(5): #단어와 단어의 길이(내림차순)를 리스트에 저
 
 output = ""
 
-for idx in range(leng[0]): #max길이에 맞춰 문자열 인덱스 움직임
+for idx in range(leng[0]): #max길이에 맞춰 문자열 인덱스 움직임 (문자열 인덱스를 0,1,.로 먼저 고정시킨 후 box를 움직여!)
     for b in box:
         b += (leng[0]-len(b))*" " #max길이 - 해당 문자열 길이만큼 공백을 추가한다
-        output += b[idx] 
+        output += b[idx] #첫번째input b[0] -> 두번째input b[0] ->... 
+        print(idx)
         #print(output)
     
 print(output.replace(" ", "")) #공백제거
+"""
+
+"""
+미소언니
+lst = []
+max = 0
+result = ""
+
+for i in range(5):
+    w = list(input()) #input을 받을 때 리스트 형태로 받아옴!
+    lst.append(w)
+    if len(w) > max:
+        max = len(w) #5번 돌면서 새로 들어온 input의 길이가 max보다 크면 새로 들어온 길이를 max로 지정한다.
+#print(lst) #[['a'], ['b', 'b', 'b'], ['c', 'c', 'c', 'c'], ['d', 'd', 'd', 'd', 'd'], ['e', 'e', 'e', 'e', 'e', 'e']]
+        
+for wd in lst:
+    len_wd = len(wd) #5개의 input의 길이를 저장
+    while max>len_wd: #max보다 작은 input의 경우 해당 input에 !를 추가한다.
+        wd.append("!")
+        len_wd+=1 #그때마다 길이를 1을 추가한다.
+
+for x in range(max): #max인덱스까지
+    for y in range(5): #각 input을 
+        char = lst[y][x] #각 input의 첫번째 문자열 ---> 다음 input의 첫 번째 문자열 --> char에 저장 (y먼저 순회)
+        if char != "!": #!가 아닌 것을 result에 저장
+            result = result + char
+            
+print(result)
 """
 
 #3. 문자열 폭발(9935번) (스택)
@@ -60,6 +131,20 @@ else:
     print(a)
 end_time = time.time()
 print("Time:", end_time - start_time #Time: 20.856285095214844
+
+      
+#미소
+t = input()
+w = input()
+result = t
+while w in result:
+    result = result.replace(w,"",1) #제일 처음에 일치하는 문자만 치환하고 싶은 경우 3rd parameter설정
+if result=="":
+    result = 'FRULA'
+print(result)
+
+
+#replace사용 replace("찾을 문자", "바꿀 문자", [안쓰면 전체 replace/ 숫자 넣으면 해당 숫자까지만 replace가 적용된다])
 """
 
 """
@@ -126,6 +211,8 @@ for i in s[1:]:
         
 print(sum)
 """
+
+print("############## 2021년 2월 10일 3주차까지 진행 ##############")
 
 #5. 균형잡힌 세상 (스택 - 괄호짝 맞추기)
 
@@ -205,18 +292,18 @@ def fibonacci(num):
  ----재귀함수가 뭔가요?
  ----잘 들어보게.~~물었어.
  (8칸)
- 
  http://pythontutor.com/visualize.html#mode=display
- d = [0] * 6	
- def fibo(x):
-    if x ==1 or x==2:
-	        return 1
-	    if d[x] != 0:
-	        return d[x]
-	    d[x] = fibo(x-1) + fibo(x-2)
-	    return d[x]
-	print(fibo(5))
  
+ d = [0] * 6
+
+def fibo(x):
+    if x ==1 or x==2:
+        return 1
+    if d[x] != 0:
+        return d[x]
+    d[x] = fibo(x-1) + fibo(x-2)
+    return d[x]
+print(fibo(5))
 """
 print("어느 한 컴퓨터공학과 학생이 유명한 교수님을 찾아가 물었다.")
 def ask(n):
