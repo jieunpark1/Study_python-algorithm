@@ -31,19 +31,61 @@ d(n)이 되게 하는 n이 없다.
 """
 
 
-
+"""
 def selfnum():
     i = 0
     bx = []
     for i in range(1, 1001):
-        res = i + i//10 + i%10
+        res = i + i//10 + i%10 #결국 자기 자신의 값을 더해나가는 것으로 일반화시킬 수 있다.
         bx.append(str(res))
 
     for j in range(1, int(max(bx))+1):
         if str(j) not in bx:
             print(j)
 selfnum()
-#100단위에서 110부터 시작해야 하는데 108부터
+
+
+#민화
+def self_number():
+    num_list=set(range(1, 10001)) #같은 자료형끼리 뺄 수 있음
+    not_self_num=set()
+    for num in num_list:
+        for n in str(num):
+            num+=int(n)
+        not_self_num.add(num)
+    cha=num_list-not_self_num
+    for c in sorted(cha):
+        print(c)
+
+self_number()
+
+#미소
+def self_number():
+    lst = []
+    for i in range(1,10001):
+        st = str(i)
+        sum = i #한수는 자기 자신에 각 자리의 수를 더한 값이므로, sum에 먼저 자기 자신을 넣어놓는다.
+        for char in st: #i의 각 자리를 하나씩 불러옴
+            sum+= int(char) #각 자리를 int로 바꾸고 sum에 더한다
+            lst.append(sum) 
+
+
+#내가 다시 해보기
+def self_number():
+    lst = []
+    for i in range(1,10001):
+        st = str(i)
+        sum = i #한수는 자기 자신에 각 자리의 수를 더한 값이므로, sum에 먼저 자기 자신을 넣어놓는다.
+        for char in st: #i의 각 자리를 하나씩 불러옴
+            sum+= int(char) #각 자리를 int로 바꾸고 sum에 더한다
+        lst.append(sum) 
+#10000까지 중 여기에 없는
+    for i in list(set(range(1,10001))):
+        if i not in lst:
+            print(i)
+            
+self_number()
+"""
 
 #3. 한수
 """
@@ -53,8 +95,7 @@ selfnum()
 N보다 작거나 같은 한수의 개수를 출력하는 프로그램을 작성하시오. 
 ex) 110 -> 99 / 1 -> 1
 """
-
-"""    
+"""
 def f(n):
     i = 0        
     for j in range(1, n+1):
@@ -69,6 +110,25 @@ def f(n):
 n = int(input())
 print(f(n))
      
+
+#민화언니: 한수 직접 계산
+n=input()
+def hansu(n):
+    hansu_list=[111,123,135,147,159,210,222,234,246,258,321,333,345,357,369,420,432,444,456,468,531,543,555,567,579,630,642,654,666,678,741,753,765,777,789,840,852,864,876,888,951,963,975,963,975,987,999]
+    if len(n)==1:
+        print(n)
+    elif len(n)==2:
+        print(n)
+    elif len(n)==3:
+        n=int(n)
+        selected_list=[]
+        for i in hansu_list:
+            if i<=n:
+                selected_list.append(i)
+        print(len(selected_list)+99)
+    elif len(n)==4:
+        print(len(selected_list)+99)
+hansu(n)
 """
 """
 다른 풀이
