@@ -198,7 +198,7 @@ print("Time:", end_time - start_time) #Time: 6.712092876434326
 1.최솟값 = 가장 작은 값 - 가장 큰 값
 2.빼려는 값이 클수록 좋다.
 """
-"""
+"""숏코딩
 s = input().split("-")
 
 sum = 0
@@ -211,7 +211,35 @@ for i in s[1:]:
         
 print(sum)
 """
+"""
+#미소
+#ex) 55-50+40-20
+#ex) 55+50-40+20
 
+t = input()
+min = list(t.split("-"))        #-기준으로 자르고 리스트에 넣는다. 그 사이에 +되어 있는 것들을 나중에 더함
+sum1 = 0  
+#print(min) # = ["55", "50+40"]
+
+for i in range(len(min)): #min의 요소 개수만큼 순회
+    x= min[i]
+    print(x)
+    if "+" in x: #min의 어떤 요소에 +기호가 있을 시, +기호로 split한 후, 해당하는 min의 자리에다가 다시 넣어준다.
+        add = x.split("+")
+        for n in add:
+            n = int(n)
+            sum1 += n
+            min[i]=sum1
+        sum1=0 #sum1초기화 필요
+print(min)
+
+            
+result = int(min[0]) #빼짐을 당하는 수(?)를 int 처리하여 result에 저장한다.
+for num in min[1:]: #빼는 수 하나씩을 int처리 하여 result에서 빼 나간다.
+    num = int(num)
+    result -= num
+print(result)
+"""
 print("############## 2021년 2월 10일 3주차까지 진행 ##############")
 
 #5. 균형잡힌 세상 (스택 - 괄호짝 맞추기)
