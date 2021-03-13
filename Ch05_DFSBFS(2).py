@@ -330,7 +330,8 @@ if check == False:
 
 #기출문제 18. 괄호변환
 #재귀함수 사용 (BFS)
-#재귀함수 사용 (BFS)
+#프로그래머스 괄호변환에서 76점. (시간초과)
+
 def right_bracket(x):
     stack = []
     res = []
@@ -350,16 +351,7 @@ def right_bracket(x):
     else:
         return "YES"
 
-def bracket(w):
-    #1. 입력이 빈 문자열일 경우, 빈 문자열을 반환한다.
-    if w == "":
-        print(w)
-        return w
-    #w자체가 올바른 괄호이면 w그대로 return
-    if right_bracket(w) == "YES":
-        print(w)
-        return w
-    
+def split_u_v(w):
     #2. w를 u,v로 분리한다.
     bracket_box = []
     for b in w:
@@ -367,33 +359,46 @@ def bracket(w):
         if bracket_box.count("(") == bracket_box.count(")"):
             u = "".join(bracket_box)
             break
-    print(u)
-    try:
-        v = w[len(u):]
-    except:
-        v = ""
-        return u+v
+    v = w[len(u):]
+    return v, u 
     
+
+def solution(w):
+    #1. 입력이 빈 문자열일 경우, 빈 문자열을 반환한다.
+    if w == "":
+        return w
+    #w자체가 올바른 괄호이면 w그대로 return
+    if right_bracket(w) == "YES":
+        return w
+    
+    #2. w를 u, v로 분리한다.
+    v, u = split_u_v(w)
+    
+
     #3. 수행한 결과를 u에 이어 붙인 후 반환한다.
     #print("u: ", u, "v: ", v)
     if right_bracket(u) == "YES":
-        bracket(v)
+        solution(v)
+        return u+solution(v)
 
     #4. u가 올바르지 않다면,
     else:
-        las = "("
-        las += bracket(v)
-        las += ")"
-        for l in u[1:-1]:
+        answer = "("
+        answer += solution(v)
+        answer += ")"
+        
+        u_li = []
+        u_part = u[1:-1]
+        for l in u_part:
             if l == ")":
-                l = "("
+                u_li.append("(")
             elif l == "(":
-                l = ")"
+                u_li.append(")")
                 
-        las += u[1:-1]
-        print(las)
+        answer += "".join(u_li)
+        return answer
         
         
-w = input()  
-a = bracket(w)
+p = input()  
+a = solution(p)
 print(a)
